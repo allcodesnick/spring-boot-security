@@ -15,7 +15,6 @@ public class LoginController {
         this.userService = userService;
     }
 
-
     // Redirect Method
     @GetMapping("/other-hello-world")
     public ModelAndView hello(){

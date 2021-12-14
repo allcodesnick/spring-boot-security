@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class UserManager implements UserService {
@@ -20,6 +22,11 @@ public class UserManager implements UserService {
     public UserManager(UserRepository userRepository) {
         this.userRepository = userRepository;
 
+    }
+
+    @Override
+    public List<User> listUserAccounts() {
+        return userRepository.findAll();
     }
 
     @Override

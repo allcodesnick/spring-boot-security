@@ -21,7 +21,7 @@ public class User {
     private String password;
 
     @Enumerated(EnumType.ORDINAL)
-    private Roles roles;
+    private Roles role;
 
     private boolean isEnabled;
 
@@ -38,7 +38,7 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.roles = Roles.USER;
+        this.role = Roles.USER;
         this.isEnabled = true;
         this.isAccountNonExpired = true;
         this.isAccountNonLocked = true;

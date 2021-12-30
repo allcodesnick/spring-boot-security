@@ -32,7 +32,7 @@ public class ApplicationUserDetails implements UserDetails {
         this.isAccountNonExpired = user.isAccountNonExpired();
         this.isAccountNonLocked = user.isAccountNonLocked();
         this.isCredentialsNonExpired = user.isCredentialsNonExpired();
-        this.authorities = user.getRoles();
+        this.authorities = user.getRole();
     }
 
     @Override

@@ -31,7 +31,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/**").permitAll()
                 .and().formLogin();
-
         // By default, Spring security enables csrf support, you have to disable it to prevent Forbidden errors.
         http.csrf().disable();
     }

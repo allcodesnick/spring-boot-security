@@ -3,14 +3,11 @@ package com.allcodesnick.loginregistration.controller;
 
 import com.allcodesnick.loginregistration.model.User;
 import com.allcodesnick.loginregistration.service.UserService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/registration")
 public class RegistrationController {
 
     private UserService userService;
@@ -19,9 +16,20 @@ public class RegistrationController {
         this.userService = userService;
     }
 
-    @PostMapping("/createUserAccount")
-    public User createUserAccount(@RequestBody User user){
-        return userService.createUserAccount(user);
+    @GetMapping
+    public String displayRegistrationForm(){
+        return "registration";
+    }
+
+    @PostMapping
+    public String createUserAccount(@ModelAttribute("user") User user){
+        userService.createUserAccount(user);
+        return "redirect:/registration?success";
+    }
+
+    @ModelAttribute("user")
+    public User userAccount(){
+        return new User();
     }
 
 }

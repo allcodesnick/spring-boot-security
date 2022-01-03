@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 @EnableWebSecurity
@@ -24,17 +24,34 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     // Authorization (Most Restrictive URL to least Restrictive)
+    /**
+     * .antMatchers("/registration**").permitAll()
+     * 		.anyRequest().authenticated()
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/**").permitAll()
-                .and().formLogin();
+                .antMatchers("/registration**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
+                .logout()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout")
+                .permitAll();
         // By default, Spring security enables csrf support, you have to disable it to prevent Forbidden errors.
         http.csrf().disable();
     }
-
 
         @Bean
         public BCryptPasswordEncoder bCryptPasswordEncoder(){

@@ -8,7 +8,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @RestController
-@RequestMapping("/")
 public class HomeController {
 
 
@@ -17,13 +16,23 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(){
-        return ("<h1>Welcome Home</h1>");
+        return "index";
     }
 
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
 
     // Redirect Method to Login
     @GetMapping("/create-order-request")
     public ModelAndView createOrderRequest(){
         return new ModelAndView("redirect:/login");
+    }
+
+    // Redirect Method
+    @GetMapping("/other-hello-world")
+    public ModelAndView hello(){
+        return new ModelAndView("redirect:/");
     }
 }

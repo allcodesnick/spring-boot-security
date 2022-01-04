@@ -13,6 +13,7 @@ public class RegistrationController {
     private UserService userService;
 
     public RegistrationController(UserService userService) {
+        super();
         this.userService = userService;
     }
 

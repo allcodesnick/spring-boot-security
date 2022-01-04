@@ -30,7 +30,7 @@ public class HomeController {
         return new ModelAndView("redirect:/login");
     }
 
-    // Redirect Method
+    // Redirect Method to index
     @GetMapping("/other-hello-world")
     public ModelAndView hello(){
         return new ModelAndView("redirect:/");

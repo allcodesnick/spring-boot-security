@@ -3,10 +3,11 @@ package com.allcodesnick.loginregistration.controller;
 
 import com.allcodesnick.loginregistration.model.User;
 import com.allcodesnick.loginregistration.service.UserService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
-@RestController
+@Controller
 @RequestMapping("/registration")
 public class RegistrationController {
 

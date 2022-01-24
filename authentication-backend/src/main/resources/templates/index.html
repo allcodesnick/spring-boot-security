@@ -37,14 +37,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="user : ${TaskList}">
+            <tr th:each="user : ${UsersList}">
                 <td th:text="${user.id}">1</td>
                 <td th:text="${user.username}">Example</td>
             </tr>
             </tbody>
         </table>
     </div>
-
-
 </body>
 </html>

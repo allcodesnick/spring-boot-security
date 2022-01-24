@@ -26,5 +26,25 @@
             </ul>
         </div>
     </nav>
+
+    <!-- Admin Account list of all users and account status -->
+    <div>
+        <table class="table" sec:authorize="hasRole('USER')">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${TaskList}">
+                <td th:text="${user.id}">1</td>
+                <td th:text="${user.username}">Example</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
 </body>
 </html>
